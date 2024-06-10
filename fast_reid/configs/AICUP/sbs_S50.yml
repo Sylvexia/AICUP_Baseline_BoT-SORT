@@ -1,5 +1,9 @@
 _BASE_: ../Base-SBS.yml
 
+INPUT:
+  SIZE_TRAIN: [256, 256]
+  SIZE_TEST: [256, 256]
+    
 MODEL:
   BACKBONE:
     NAME: build_resnest_backbone
@@ -7,5 +11,18 @@ MODEL:
 DATASETS:
   NAMES: ("AICUP",)
   TESTS: ("AICUP",)
+
+SOLVER:
+  BIAS_LR_FACTOR: 1.
+  
+  IMS_PER_BATCH: 64
+  MAX_EPOCH: 60
+  STEPS: [30, 50]
+  WARMUP_ITERS: 2000
+
+
+TEST:
+  EVAL_PERIOD: 60
+  IMS_PER_BATCH: 4
 
 OUTPUT_DIR: logs/AICUP/sbs_S50
